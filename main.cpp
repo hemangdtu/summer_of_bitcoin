@@ -15,7 +15,7 @@ class TransactionInfo   // Class for all transactions to be done
         vector<string> parents;
 };
 
-pair<string,TransactionInfo*> initiateTransaction(vector<string>& row)
+pair<string,TransactionInfo*> initiateTransaction(vector<string>& row)    // Function to initiate track transactions
 {
     vector<string> p;
     auto ans = new TransactionInfo();
@@ -30,7 +30,7 @@ pair<string,TransactionInfo*> initiateTransaction(vector<string>& row)
     return {row[0], ans};
 }
 
-void readinput(string input, unordered_map<string, TransactionInfo*>& ump)
+void readinput(string input, unordered_map<string, TransactionInfo*>& ump)    // Function to read input from CSV
 {
     ifstream fin(input);
 
@@ -57,7 +57,7 @@ void readinput(string input, unordered_map<string, TransactionInfo*>& ump)
     cout<<"Transaction Count :" << ump.size() << "\n";
 }
 
-bool isValidTx(TransactionInfo* tx,set<string>& included_tx_set)
+bool isValidTx(TransactionInfo* tx,set<string>& included_tx_set)    // Function to track valid transactions
 {
     for(auto parent : tx -> parents)
         if(included_tx_set.find(parent) == included_tx_set.end())
@@ -66,7 +66,7 @@ bool isValidTx(TransactionInfo* tx,set<string>& included_tx_set)
     return true;
 }
 
-void writeOutput(vector<string>& included_tx_vector, string fn)
+void writeOutput(vector<string>& included_tx_vector, string fn)    // Function for developing output file
 {
     ofstream myfile(fn);
     for(auto s : included_tx_vector)
